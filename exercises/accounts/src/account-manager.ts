@@ -50,9 +50,9 @@ export class AccountManager {
    */
   activateNewUser(approver: Admin, userToApprove: User): ConfirmedUser {
     if (!approver.adminSince) throw 'Approver is not an admin!';
-    let userToConfirm = userToApprove as ConfirmedUser;
-    userToConfirm.isActive = true;
-    return userToConfirm;
+    // let userToApprove = userToApprove as ConfirmedUser;
+    // userToApprove.isActive = true;
+    return { ...userToApprove, isActive: true };
   }
 
   /**
@@ -64,9 +64,9 @@ export class AccountManager {
   promoteToAdmin(existingAdmin: Admin, user: ConfirmedUser) {
     if (!existingAdmin.adminSince) throw 'Not an admin!';
     if (user.isActive !== true) throw 'User must be active in order to be promoted to admin!';
-    let newAdmin = user as Admin;
-    newAdmin.adminSince = new Date();
-    return newAdmin;
+    // let newAdmin = user as Admin;
+    // newAdmin.adminSince = new Date();
+    return { ...user, adminSince: new Date() };
   }
 }
 
